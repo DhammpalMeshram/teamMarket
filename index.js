@@ -425,6 +425,56 @@ const products = [
 
 const main = document.querySelector('.main_container');
 
+// button within module
+const logInBtn = document.querySelector('.login_btn')
+// button in header
+const signinBtn = document.querySelector("#signIn");
+const signinModule = document.querySelector(".login_module");
+
+const username = document.getElementById('username');
+const password = document.getElementById("password");
+
+
+//to open pop up
+signinBtn.addEventListener('click',(e)=>{
+    e.preventDefault();
+
+    if(signinBtn.innerText == "Logout"){
+        signinBtn.innerText = "Login";
+        alert('Log out successfull');
+        return;
+    }
+    else{
+        signinModule.classList.add("pop_up");
+    }
+})
+
+
+// function to submit user data
+logInBtn.addEventListener('click',(e)=>{
+    e.preventDefault();
+
+    const name = username.value;
+    const userPassword = password.value;
+    console.log(username.value);
+    console.log(password.value);
+
+
+    if(name == ""){
+        alert("Please Enter Username");
+        return;
+    }
+    if(userPassword == ""){
+        alert("Please Enter Password");
+        return;
+    }
+
+    signinModule.classList.remove("pop_up");
+    signinBtn.innerText = signinBtn.innerText=="Login"? "Logout": "Login";
+    // alert('Login successfull');
+    
+})
+
 // main.style.backgroundColor ='green';
 
 function createGenereItems(data){

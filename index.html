@@ -54,6 +54,20 @@ header > img {
     cursor: pointer;
 }
 
+#signIn {
+    /* margin-left: 10px; */
+    border: 2px solid var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-family: inherit;
+    color:white;
+    background-color: #2874f0;
+    cursor: pointer;
+    position:absolute;
+    right: 25px;
+}
+
 #form {
     position: absolute;
     right: 20px;
@@ -155,7 +169,160 @@ header > img {
     align-items: center;
     flex-direction: row;
 }
+/* 
+.active{
+    scale:1;
 
+} */
+
+.login_module {
+display: flex;
+align-items: center;
+    justify-content: center;
+  max-width:80%;
+  background-color: white;
+  max-height:70%;
+  width: 500px;
+  height:300px;
+  position: fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%)scale(0);
+  transition: 200ms ease-in-out;
+  border: solid 1px black;
+  border-radius:20px;
+  z-index:10;
+  background-color: #f2f2f2;
+}
+
+.pop_up{
+    transform:translate(-50%,-50%)scale(1);
+}
+
+
+.log_inform {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.log_inform > input {
+    padding: 10px;
+    width: 250px;
+    margin: 10px 5px;
+    /* border: none; */
+    border-radius: 3px;
+    outline: none;
+
+}
+
+.login_btn{  /* btn within the module*/
+    margin-top: 40px;
+    width:100px;
+    height: 30px;
+    /* transform:200ms ease-in-out; */
+}
+
+.login_btn:active{
+    scale: 0.8;
+    
+}
+
+nav{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    /* justify-content: center; */
+}
+nav > span {
+    padding:5px 15px;
+    margin: 0px 15px;
+    /* border: 2px green solid; */
+    cursor: pointer;
+}
+
+nav > span:hover {
+    color: white;
+    background-color: black;
+    border-radius: 20px;
+}
+
+.sell_form {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    /* flex-direction: column; */
+}
+
+.seller_detail{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.sell_module {
+    display: flex;
+align-items: center;
+    justify-content: center;
+  /* max-width:80%; */
+  background-color: white;
+
+  width: 1000px;
+  /* height:300px; */
+  position: fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%)scale(1);
+  transition: 200ms ease-in-out;
+  border: solid 1px black;
+  border-radius:20px;
+  z-index:10;
+  background-color: #f2f2f2;
+}
+
+.sellerDiv > label {
+    width: 100%;
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.sellerDiv > input {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+
+.product_detail{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* border:  2px red solid; */
+}
+
+.productDiv > input {
+    /* padding: 0px; */
+    /* margin: 0px; */
+    width: 100%;
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    /* background-color: green; */
+}
+
+.productDiv > label {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    padding: 5px;
+}
 
 
     </style>
@@ -166,34 +333,114 @@ header > img {
         <h1 id="title">
         <i>E-Commerce</i></h1>
         <form id="form">
-            <input type="text" class="serch" placeholder="serch">
-            <button id="srcbtn" type="submit">Serch</button>
+            <input type="text" class="serch" placeholder="search">
+            <button id="srcbtn" type="submit">Search</button>
         </form>
+       
     </header>
-    <main>
-        <div class="main_container">
-            <!-- <img src=${item.url} alt="Movies Poster">
-                <div class="productInfo">
-                    <h3>${item.title.shortTitle}</h3>
-                    <span class="green">${item.price.mrp}</span>
-                    <span class="green">${item.price.discount}</span>
-            </div> -->
-        
-    </main>
 
     <nav>
         <span>Home</span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-
+        <span>About Us</span>
+        <span>Contact Us</span>
+        <span>Become a Seller</span>
+        <button id='signIn'>Login</button>
 
     </nav>
+
+    <main>
+        <div class="main_container">
+            
+        
+    </main>
+
+    
   
             
         <span></span>
+
+
+    <div class="login_module">
+        <form class="log_inform">
+            <input type="text" id="username" name="username" placeholder="Enter Email or Mobile number"/>
+            <input type="text" id="password" name="Password" placeholder="Enter Password"/>
+            <button class="login_btn">Login</button>
+        </form>
+    </div>
+
+
+    <div class="sell_module">
+        <form class="sell_form">
+            <div class="seller_detail">
+            <h2>Tell us about Your Product:</h2>
+
+
+                <div class="sellerDiv">
+                    <label for="firstName"> Seller first name:</label>
+                    <input type="text" name="" id="firstName" />
+                </div>
+                
+                <div class="sellerDiv">
+                    <label for="lastName"> Seller last name:</label>
+                    <input type="text" name="" id="lastName" />
+                    
+                </div>
+                
+                <div class="sellerDiv">
+                    <label for="address">Address:</label>
+                    <input type="text" name="" id="address" />
+                </div>
+
+                <div class="sellerDiv">
+                    <label for="number">Contact number:</label>
+                    <input type="text" name="" id="number" />
+                </div>
+
+                <div class="sellerDiv">
+                    <label for="email">Email ID:</label>
+                    <input type="text" name="" id="email" />
+                </div>
+
+            </div>
+            <div class="product_detail">
+                
+                <div class="sellerDiv">
+                <label for="productName"> Product Name</label>
+                <input type="text" id="productName"/>
+                </div>
+                
+                <div class="sellerDiv">
+                <label for="manu_name"> Manufature Name </label>
+                <input type="text" id="manu_name"/>
+                </div>
+
+                <div class="sellerDiv">
+                <label for="mrp"> Mrp</label>
+                <input type="text" id="mrp"/>
+                </div>
+
+                <div class="sellerDiv">
+                <label for="cost"> Cost</label>
+                <input type="text" id="cost"/>
+                </div>
+
+                <div class="sellerDiv">
+                <label id="category"> Product Category</label>
+                <select id="category">
+                    <option>Home and Furniture</option>
+                    <option>Sports</option>
+                    <option>Style</option>
+                    <option>Electronics</option>
+                    <option>Foods</option>
+                    <option>Medical</option>
+                </select>
+                </div>
+            </div>
+
+            <button class="login_btn">Login</button>
+        </form>
+    </div>
+
 <script src="index.js"></script>    
 </body>
 
