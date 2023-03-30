@@ -423,6 +423,19 @@ const products = [
 
 ];
 
+// search Button
+const serchBtn = document.getElementById("srcbtn");
+
+// become a seller from header
+const sellOpener = document.querySelector('#sellOpener');
+console.log(sellOpener);
+
+// sell module
+const sell_module = document.querySelector('.sell_module');
+
+const category = document.querySelector(".category_container");
+const list = document.querySelector(".nav_category");
+
 const main = document.querySelector('.main_container');
 
 // button within module
@@ -433,6 +446,103 @@ const signinModule = document.querySelector(".login_module");
 
 const username = document.getElementById('username');
 const password = document.getElementById("password");
+
+
+const createBtn = document.querySelector(".create_btn");
+const closeBtn = document.querySelector(".close_btn");
+
+//close payment btn
+const closePaymentBtn = document.querySelector(".close_payment")
+
+const paymentPage = document.querySelector(".paymentPage");
+
+const confirmBtn = document.querySelector(".confirm");
+
+confirmBtn.addEventListener("click",()=>{
+    alert("Payment Successfull");
+    paymentPage.classList.remove("showPayContainer");
+})
+
+closePaymentBtn.addEventListener("click",()=>{
+    paymentPage.classList.remove("showPayContainer");
+})
+
+function openPayment (){
+    console.log("open payment called");
+    paymentPage.classList.add("showPayContainer");
+}
+
+// funtion to remvome class from module
+closeBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    sell_module.classList.remove("pop");
+    
+})
+
+createBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    const imgSrc = document.getElementById("img_src");
+    const title = document.getElementById("productName");
+    const mrp = document.getElementById("mrp");
+    const cost = document.getElementById("cost");
+    const companyName = document.getElementById("manu_name");
+
+    if(title.value == ""){
+        alert("Please fill all fields");
+        return;
+    }
+    if(mrp.value == ""){
+        alert("Please fill all fields");
+        return;
+    }
+    if(cost.value == ""){
+        alert("Please fill all fields");
+        return;
+    }
+    if(companyName.value == ""){
+        alert("Please fill all fields");
+        return;
+    }
+
+
+    let dis = (Number(mrp.value)-Number(cost.value));
+    let discount = (dis/Number(mrp.value))*100;
+
+    const card = document.createElement('div');
+        card.classList.add('productCard');
+        card.setAttribute('onClick','openPayment()');
+
+        card.innerHTML = `
+            <img src=${imgSrc.value} alt="product">
+                <div class="productInfo">
+                    <h2>${title.value}</h2>
+                    <span class="price">₹${mrp.value}</span>
+                    <span class="discount">${companyName.value}</span>
+                    <span class="company">${discount}% OFF</span>
+                </div>
+                `
+        main.appendChild(card);
+
+        sell_module.classList.remove("pop");
+})
+
+
+
+
+
+// function to open sell module
+sellOpener.addEventListener("click", ()=>{
+    sell_module.classList.add("pop");
+})
+
+// function on serch btn click;
+serchBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+})
+
+category.addEventListener("click",()=>{
+    list.classList.toggle("list_active");
+})
 
 
 //to open pop up
@@ -478,14 +588,14 @@ logInBtn.addEventListener('click',(e)=>{
 // main.style.backgroundColor ='green';
 
 function createGenereItems(data){
-    
-    
+ 
     data.forEach((item)=>{
         const card = document.createElement('div');
         card.classList.add('productCard');
+        card.setAttribute('onClick','openPayment()');
 
         card.innerHTML = `
-            <img src=${item.url} alt="Movies Poster">
+            <img src=${item.url} alt="product">
                 <div class="productInfo">
                     <h2>${item.title.shortTitle}</h2>
                     <span class="price">₹${item.price.mrp}</span>
