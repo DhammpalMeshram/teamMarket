@@ -110,6 +110,17 @@ nav > #nav1:hover {
     border-radius: 20px;
 }
 
+.serchOption {
+    font-size: 16px;
+    padding: 5px 5px;
+}
+
+.serchOption:hover{
+    background-color: black;
+    color: white;
+}
+
+
 nav >#user {
     position: absolute;
     right: 30px;
@@ -117,10 +128,9 @@ nav >#user {
 
 .nav_category {
     background-color: white;
-
     width: 160px;
     position: absolute;
-    top:255%;
+    top:120px;
     left:80%;
     transform:translate(-50%,-50%)scale(0);
     /* visibility: hidden; */
@@ -176,10 +186,6 @@ nav >#user {
     background-color: white;
 }
 
-
-.productCard:hover {
-     /* transform: scale(1.1); */
-}
 
 .productCard img {  /* Every movie image */
     width: 150px;

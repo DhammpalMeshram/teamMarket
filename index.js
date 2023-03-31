@@ -16,7 +16,7 @@ const products = [
         description: 'This electric kettle from Pigeon will soon become a travelers best friend, a hostelite saviour and an answer to all the midnight cravings. With this handy appliance, you can boil water and use it to make instant noodles, packet soup, coffee and green tea.',
         discount: 'Extra 10% Off', 
         tagline: 'Deal of the day',
-        type : ['home', 'electonics','electic ketal'],
+        type : ['home', 'electronics','electic ketal'],
     },
     { 
         id: 'product2',
@@ -35,7 +35,7 @@ const products = [
         description: 'This non-stick sandwich toaster .easy to use and very handy. Directly hold over flame to make tasty toasts and toasted sandwiches. Specially designed by keeping your needs in mind, the sandwich maker makes whatever youre doing simpler, smarter and better',
         discount: 'From 99+5% Off', 
         tagline: 'Pestige, Nova & more',
-        type : ['home','electonics'],
+        type : ['home','electronics'],
     },
     { 
         id: 'product3',
@@ -73,7 +73,7 @@ const products = [
         description: 'The Molife Sense 500, a brilliant smartwatch with a beautiful large display. Say hello to the infinity 1.7-inch display with 2.5D curved edges. Thanks to seamless Bluetooth 5.0 connectivity, you wont have to keep waiting. Bring a change to your outfit every day with changeable straps. A splash of color every day keeps the boredom away.',
         discount: 'Grab Now', 
         tagline: 'Best Seller' ,
-        type : ['electonics','style','sports'],
+        type : ['electronics','style','sports'],
     },
     { 
         id: 'product5',
@@ -111,7 +111,7 @@ const products = [
         description: 'Table Fan. Perfect size fan for use on a table, desk or in an RV. Whisper quiet, powerful airflow and reliable operation in a compact 6" size. Two adjustable speeds to customize airflow: high or low settings. Tough break-resistant ABS plastic blades. ',
         discount: 'Minimum 40% Off', 
         tagline: 'Top Selling',
-        type : ['home', 'electonics'], 
+        type : ['home', 'electronics'], 
     },
     { 
         id: 'product7',
@@ -130,7 +130,7 @@ const products = [
         description: 'Let music brighten up your mood anytime, anywhere with the boAt 235v2 Fast Charging Bluetooth Headset. This Bluetooth headset features a Call Vibration Alert, a Fast Charging Technology, and Easy Access Controls to listen to and manage your favorite music with ease.',
         discount: 'Minimum 50% Off', 
         tagline: 'Grab Now!' ,
-        type : ['electonics'],
+        type : ['electronics'],
     },
     { 
         id: 'product8',
@@ -149,7 +149,7 @@ const products = [
         description: 'Print everything, from project reports for your office to school assignments for your kids, without worrying about cost with this high-performance and highly-economical printer from Epson.',
         discount: 'From ₹10999', 
         tagline: 'Epson' ,
-        type : ['electonics', 'home'],
+        type : ['electronics', 'home'],
     },
     { 
         id: 'product9',
@@ -168,7 +168,7 @@ const products = [
         description: 'You can complete your office work without any interruptions on the Acer 54.61 cm (21.5) Full HD Desktop Monitor. With a thickness of up to 6.6 mm, this desktop monitor has a sleek and elegant design. Also, its frameless display offers a clear and immersive viewing experience. And, thanks to its geometric stand, this monitor can be easily placed in the room anywhere you want. Additionally, the inbuilt speakers of this desktop monitor provide enhanced sound.',
         discount: 'From ₹6599', 
         tagline: 'acer' ,
-        type : ['electonics'],
+        type : ['electronics'],
     },
     { 
         id: 'product10',
@@ -187,7 +187,7 @@ const products = [
         description: `1 Camera Body, Lens, Li-ion Battery NP-W126S, USB Cable, Shoulder Strap, Body Cap, Owner's Manual`,
         discount: 'Shop now!', 
         tagline: 'canon, sony, fujifilms' ,
-        type : ['electonics'],
+        type : ['electronics'],
     },
     { 
         id: 'product11',
@@ -206,7 +206,7 @@ const products = [
         description: `Want to charge your devices on-the-go? Then this 20000 mAh power bank from Redmi will be a great addition to your travel bag. It features dual ports and two-way 18 W fast charging. That’s not all, its anti-slip edge grip design ensures that you get to hold the device firmly and avoid any accidental drops.`,
         discount: 'Shop now!', 
         tagline: 'MI, realme and More' ,
-        type : ['electonics'],
+        type : ['electronics'],
     },
     { 
         id: 'product12',
@@ -225,7 +225,7 @@ const products = [
         description: `Piybha Store Med Black Acoustic Guitar Acoustic Guitar Boxwood Graphite Right Hand Orientation (Black)`,
         discount: 'Upto 70% off', 
         tagline: 'Gitars, Ukuless and More' ,
-        type : ['electonics','sports'],
+        type : ['electronics','sports'],
     },
     { 
         id: 'product13',
@@ -458,6 +458,58 @@ const paymentPage = document.querySelector(".paymentPage");
 
 const confirmBtn = document.querySelector(".confirm");
 
+const serchInput = document.getElementById("inputSerch");
+const searchBtn = document.getElementById('srcbtn');
+
+
+const serchOptions = document.querySelectorAll('.serchOption');
+
+serchOptions.forEach(item=>{
+    item.addEventListener("click", (e)=>{
+        let serchTerm = e.target.innerText.toLowerCase();
+
+        let productfound = []
+    
+        products.forEach(item=>{
+            item.type.forEach(typeofitem=>{
+                if(typeofitem.toLowerCase() === serchTerm)
+                    productfound.push(item);
+            })
+        })
+        main.innerHTML = "";
+
+        if(productfound.length ==0){
+            main.append(`Comming Soon........`);
+        }
+        createGenereItems(productfound);
+    })
+})
+
+
+
+// function to search from search bar
+serchBtn.addEventListener("click",(e)=>{
+    console.log(serchInput.value);
+
+    let serchTerm = serchInput.value.toLowerCase();
+    
+    let productfound = []
+    
+    products.forEach(item=>{
+        if(item.title.longTitle.toLowerCase().includes(serchTerm))
+            productfound.push(item);
+
+        else if(item.title.shortTitle.toLowerCase().includes(serchTerm))
+            productfound.push(item);
+    })
+
+    main.innerHTML = "";
+    createGenereItems(productfound);
+})
+
+
+
+
 confirmBtn.addEventListener("click",()=>{
     alert("Payment Successfull");
     paymentPage.classList.remove("showPayContainer");
@@ -523,11 +575,26 @@ createBtn.addEventListener("click", (e)=>{
                 `
         main.appendChild(card);
 
+        const item = { 
+            url: imgSrc.value,
+            title: {
+                shortTitle: title.value,
+                longTitle:title.value,
+            },
+            price: {
+                mrp: mrp.value,
+                cost: companyName.value,
+                discount: discount,
+            },
+            quantity: 1,
+            discount: 'Buy Soon!', 
+            tagline: 'BestSellet',
+        }
+
+        products.push(item);
+
         sell_module.classList.remove("pop");
 })
-
-
-
 
 
 // function to open sell module
@@ -585,8 +652,6 @@ logInBtn.addEventListener('click',(e)=>{
     
 })
 
-// main.style.backgroundColor ='green';
-
 function createGenereItems(data){
  
     data.forEach((item)=>{
@@ -603,10 +668,9 @@ function createGenereItems(data){
                     <span class="company">${item.discount}</span>
                 </div>
                 `
-        
         main.appendChild(card);
-        
     });        
 }
 
 createGenereItems(products);
+
